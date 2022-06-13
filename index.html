@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>fabricDemo</title>
+		<script src="./js/fabric.js"></script>
+		<style>
+			.div{
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+			<button id="addBtn" onclick="addBtn()">添加</button>
+			<br>
+			<canvas id="rect" width="1900" height="900" style="border: 1px dashed #007AFF;"></canvas>
+			<!-- <img src="./assets/pic001.png" alt="" id="my-image"> -->
+		</div>
+		<script>
+			var canvas = new fabric.Canvas('rect',{
+				selectionColor: 'white',
+				selectionLineWidth: 2
+			});
+			var drawReact = new fabric.Rect({
+				fill: 'white',
+				stroke: '#6a91c5'
+			});
+			drawReact.set('selectable', false);
+			var drawText = new fabric.Text('',{
+				fontSize: 15,
+				fontWeight: 'normal',
+				left: 110,
+				top: 150,
+			});
+			function addBtn(){
+
+				var path = new fabric.Path('M 100 100 L 800 100 L 800 300 L 1200 300 L 1200 800 L 800 800 L 800 500 L 500 500 L 500 700 L 100 700 z');
+				path.set({ fill: 'rgba(0, 153, 145, 0)', stroke: '#0036ee', opacity: 0,hasBorders:false,hasControls : false,selectable:true,inverted:true,absolutePositioned :true });
+				path.on('mouseover', function() {
+					// console.log(path.clipPath);
+					path.set({ fill: 'rgba(0, 153, 145, 0)', stroke: '#0036ee', opacity: 1 });
+					// canvas.add(path);
+					canvas.sendBackwards(path);
+				});
+				path.on('mouseout', function() {
+					path.set({ fill: 'rgba(0, 153, 145, 0)', stroke: '#0036ee', opacity: 0 });
+					// canvas.add(path);
+					canvas.sendToBack(path);
+				});
+				canvas.add(path);
+				var rect = new fabric.Rect({
+					left: 110,
+					top: 110,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40,
+					hoverCursor:'EQ Name : Swim tester\nEQ Status : Shutdowm'
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				rect.on('mouseover', function(options) { 
+					drawText.set({
+						text: options.target.hoverCursor,
+						left: options.target.left + 5,
+						top: options.target.top + options.target.height + 4 + 5
+					});
+					drawReact.set({
+						width: drawText.width + 10,
+						height: drawText.height + 10,
+						left: options.target.left,
+						top: options.target.top + options.target.height + 4
+					});
+					canvas.add(drawReact);  
+					canvas.add(drawText);
+					path.set({ fill: 'rgba(0, 153, 145, 0)', stroke: '#0036ee', opacity: 1 });
+					// canvas.add(path);
+					canvas.sendBackwards(path);
+				});
+				rect.on('mouseout', function(options) {
+					canvas.remove(drawReact);
+					canvas.remove(drawText);
+					path.set({ fill: 'rgba(0, 153, 145, 0)', stroke: '#0036ee', opacity: 0 });
+					// canvas.add(path);
+					canvas.sendToBack(path);
+				});
+				var rect = new fabric.Rect({
+					left: 240,
+					top: 110,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 110,
+					top: 170,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 240,
+					top: 170,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 110,
+					top: 220,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 240,
+					top: 220,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 370,
+					top: 110,
+					fill: '#87ceeb',
+					width: 80,
+					height: 40
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 380,
+					top: 160,
+					fill: '#90e48d',
+					width: 15,
+					height: 30
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 445,
+					top: 160,
+					fill: '#87ceeb',
+					width: 15,
+					height: 30
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 350,
+					top: 180,
+					fill: '#87ceeb',
+					width: 10,
+					height: 30
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 370,
+					top: 210,
+					fill: '#87ceeb',
+					width: 10,
+					height: 15
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 390,
+					top: 210,
+					fill: '#87ceeb',
+					width: 10,
+					height: 15
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 450,
+					top: 210,
+					fill: '#87ceeb',
+					width: 10,
+					height: 15
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 470,
+					top: 210,
+					fill: '#87ceeb',
+					width: 10,
+					height: 15
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+				var rect = new fabric.Rect({
+					left: 370,
+					top: 230,
+					fill: '#87ceeb',
+					width: 110,
+					height: 15
+				});
+				rect.set('selectable', false);
+				canvas.add(rect);
+
+				
+				var text = new fabric.Text('Env Room', { left: 570, top: 455, fontSize: 30,fontWeight: 'normal' });
+				text.set('selectable', false);
+				canvas.add(text);
+			}
+		</script>
+	</body>
+</html>
